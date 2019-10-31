@@ -14,7 +14,7 @@ include 'connection.php';
       die();
   }*/
 
-$sql="select c.customer_name,h.hotel_name,h.points,c.customer_mobno from customer_list c inner join hotel_history h on c.id=h.id";
+$sql="select * from customer_list";
 $result=mysqli_query($con,$sql);
 
 ?>
