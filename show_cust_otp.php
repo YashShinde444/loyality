@@ -26,14 +26,18 @@ if(isset($_POST['add']))
 { 
   $hotel = $_POST['hotel'];
   $sql2 = "insert into hotel_history(id,hotel_name,date,points) values($sessionid,'$hotel',CURDATE(),$count + 50)";
+  $sql5 = "update customer_list set hotel_name = '$hotel',points=$count + 50 where id=$sessionid";
   mysqli_query($con,$sql2);
+  mysqli_query($con,$sql5);
 }
 
 if(isset($_POST['redeem']))
 { 
   $hotel = $_POST['hotel'];
   $sql4="update hotel_history set points=0 where hotel_id=$latest_id and id=$sessionid";
+  $sql6 = "update customer_list set points=0 where id=$sessionid";
   mysqli_query($con,$sql4);
+  mysqli_query($con,$sql6);
 }
 ?>
 <form method="post" action="">
