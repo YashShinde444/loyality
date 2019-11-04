@@ -3,7 +3,6 @@ session_start();
 include 'header_without_body.php';
 include 'footer.php';
 include 'connection.php';
-
 $sessionid = $_SESSION['id'];
 $sql="select * from customer_list where id=$sessionid";
 $result=mysqli_query($con,$sql);
@@ -22,50 +21,61 @@ foreach($result2 as $row2)
   $count=$row2['points'];
 }
 echo "<pre></pre>";
-/*if(isset($_POST['add']))
+if(isset($_POST['add']))
 { 
   $hotel = $_POST['hotel'];
   $sql2 = "insert into hotel_history(id,hotel_name,date,points) values($sessionid,'$hotel',CURDATE(),$count + 50)";
   $sql5 = "update customer_list set hotel_name = '$hotel',points=$count + 50 where id=$sessionid";
   mysqli_query($con,$sql2);
   mysqli_query($con,$sql5);
-}*/
+}
 
 if(isset($_POST['redeem']))
 { 
   $hotel = $_POST['hotel'];
-  $sql4="update hotel_history set points=0 where hotel_id=$latest_id and id=$sessionid";
+  $sql4="insert into hotel_history(id,hotel_name,date,points) values($sessionid,'$hotel',CURDATE(), 0)";
   $sql6 = "update customer_list set points=0 where id=$sessionid";
   mysqli_query($con,$sql4);
   mysqli_query($con,$sql6);
 }
 ?>
 
-<div class="bg-form">
-  <form method="post" action="">
-  <?php foreach($result as $row)
-  {
-  ?>
-  <p><label>Username:-</label>
-  <?php echo $row['customer_name']; ?></p>
-  <p><label>Mobile:-</label>
-  <?php echo $row['customer_mobno']; ?></p>
-  <p><label>Previous Hotel:-</label>
-  <?php echo $row['hotel_name']; ?></p>
- <!--  <label>Hotel Name:-</label>
-  <input type="text" class="form-control" name="hotel" value=""><br> -->
-  <?php 
-  }
-  ?>
- 
-  <!-- <input type="submit" name="redeem" class="btn btn-danger" value="Redeem Rewards"> --> 
-</form>
-<a href="hotel_entry.php"><input type="submit" name="add" class="btn btn-primary" value="Add Entry"></a> <br>
+<div class="container">
+	<form method="POST">
+	<table class="table table-bordered">
+		<tr>
+			<th><label>Hotel Name</label></th>		
+			<th><label>Room Type</label></th>
+			<th><label>Check in</label></th>
+			<th><label>Check out</label></th>
+			<th><label>Billable Amount</label></th>
+			<th><label>Points</label></th>
+		</tr>
+		<tr>
+			<td><input class="form-control" type="text" name="hotel"></td>
+			<td>
+				<select class="form-control" name="room">
+					<option>--Select--</option>
+					<option>Double bed AC</option>
+					<option>Double bed Non AC</option>
+					<option>Single bed AC</option>
+					<option>Single bed Non AC</option>
+				</select>
+			</td>
+			<td><input class="form-control" type="text" name="checkin"></td>
+			<td><input class="form-control" type="text" name="checkout"></td>
+			<td><input class="form-control" type="text" name="bill"></td>
+			<td>
+				<input class="form-control" type="text" name="points"><br>
+				<input class="btn btn-primary" type="submit" name="add" value="Rewards">
+				<input class="btn btn-danger" type="submit" name="redeem" value="Redeem">
+			</td>
+		</tr>
+	</table>
+	</form>
 </div>
 
-    
-  <!-- <div class="container"> -->
-  <div class="bg-table"> 
+ <div class="bg-table"> 
   <table class="table table-border no-bg" id="CustomerTable">
     <thead>
       <tr>
@@ -86,5 +96,3 @@ if(isset($_POST['redeem']))
     </tbody>
   </table>
  </div>
- 
-<!-- </div> -->

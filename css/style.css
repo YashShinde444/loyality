@@ -38,6 +38,16 @@ div .vertical-center
   margin-left: 40px;
   background-color: white;
 }
+.bg-form
+{
+  border:1px solid white;
+  border-radius:10px;
+  box-shadow: 0 0 6px rgba(35, 173, 255, 1);
+  margin-top: 20px;
+  margin-right:40px;
+  margin-left: 40px;
+  background-color: white;
+}
 .no-bg
 {
   background:#f2f2f2;

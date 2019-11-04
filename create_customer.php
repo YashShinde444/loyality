@@ -6,11 +6,12 @@ include 'connection.php';
 if(isset($_POST['add_customer']))
 {  
 	$customer_name=$_POST['customer_name'];
-	$hotel=$_POST['hotel'];
-	$points=$_POST['points'];
+	/*$hotel=$_POST['hotel'];*/
+	//$points=$_POST['points'];
 	$customer_mobno=$_POST['customer_mobno'];
-	$sql="insert into customer_list(customer_name,hotel_name,points,customer_mobno) values('$customer_name','$hotel',$points,'$customer_mobno')";
+	$sql="insert into customer_list(customer_name,customer_mobno) values('$customer_name',$customer_mobno)";
 	mysqli_query($con,$sql);
+
 }
 
 ?>
@@ -23,12 +24,12 @@ if(isset($_POST['add_customer']))
 	<h2 class="text-center">Customer Registration</h2><hr>
 	<label>Customer Name</label>
 	<input type="text" class="form-control" name="customer_name" required>
-	<label>Hotel</label>
-	<input type="text" class="form-control" name="hotel">
+<!-- 	<label>Hotel</label>
+	<input type="text" class="form-control" name="hotel"> -->
 	<label>Customer Mobile</label>
 	<input type="text" class="form-control" name="customer_mobno" required>
-	<label>Points</label>
-	<input type="text" class="form-control" name="points" required><br>
+<!-- 	<label>Points</label>
+	<input type="text" class="form-control" name="points" required><br> -->
 	<input type="submit" class="btn btn-primary" name="add_customer" value="Register">
 </form>
 <hr>
