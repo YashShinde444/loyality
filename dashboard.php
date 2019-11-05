@@ -13,8 +13,8 @@ include 'connection.php';
       header("location:index.php"); 
       die();
   }*/
-
-$sql="select * from customer_list";
+$reg_id=$_SESSION['id'];
+$sql="select * from customer_list order by id desc";
 $result=mysqli_query($con,$sql);
 
 ?>
@@ -31,7 +31,7 @@ $result=mysqli_query($con,$sql);
     <ul class="nav navbar-nav navbar-right">
       <li><a href="create_customer.php">Create Customer</a></li>
      <!--  <li><a href="otp_login.php">Existing Customer</a></li> -->
-      <li><a href="profile.php">Profile</a></li>
+      <li><a href="profile.php?reg_id=<?php echo $reg_id; ?>">Profile</a></li>
     </ul>
   </div>
 </nav>
@@ -93,7 +93,7 @@ if($pageWasRefreshed ) {
 } 
 else 
 {
-   session_destroy();
+  // session_destroy();Use for future ldap_first_reference(link, result)
 }
   
 ?>

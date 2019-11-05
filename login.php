@@ -18,7 +18,10 @@ if(isset($_POST['login']))
 	$count = mysqli_num_rows($result);
       
       // If result matched $myusername and $mypassword, table row must be 1 row
-		
+		foreach($result as $row)
+    {
+      $_SESSION['id']=$row['id'];
+    }
     if($count == 1) 
     {
       $_SESSION['login']="active";

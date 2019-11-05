@@ -4,7 +4,7 @@ $(document).ready( function () {
     processing:true,
    // serverSide: true,
     orderMulti:true,
-    
+    "ordering": false/*This line disbles the ordering */
     });
 } );
 </script>
